@@ -594,6 +594,9 @@ void Scheduler::registerLayer(Layer* layer) {
     if (layer->getWindowType() == WindowType::NOTIFICATION_SHADE) {
         // Enforce max refresh rate for notification pulldown
         voteType = scheduler::LayerHistory::LayerVoteType::Max;
+    } else if (layer->getWindowType() == WindowType::STATUS_BAR) {
+        // Enforce min refresh rate for status bar items
+        voteType = scheduler::LayerHistory::LayerVoteType::Min;
     }
     // If the content detection feature is off, we still keep the layer history,
     // since we use it for other features (like Frame Rate API), so layers
